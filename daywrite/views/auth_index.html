@@ -1,0 +1,71 @@
+{% extends "inside_base.html" %}
+
+{% block styles %}
+    <link rel='stylesheet' href='{{ url_for('static', filename='css/vendor/bootstrap.min.css') }}' type='text/css' media='all' />
+    <link rel='stylesheet' href='{{ url_for('static', filename='css/flat-ui.css') }}' type='text/css' media='all' />
+    <script>
+    $(document).ready(function(){
+      $('textarea').caret(-1);
+      $('textarea').autosize({
+        "callback": function(){
+            // Check if the caret is at the end of the textarea
+            if ($('textarea').caret() == $('textarea').val().length) {
+                // If it is, do the animation
+                $('html, body').stop().animate({
+                    scrollTop: $(document).height()
+                });
+            };
+        }
+      });
+    });
+
+    </script>
+{% endblock %}
+
+{% block header %}
+    <div id="configure" class="bar-icon bar-icon-fixed">
+        <a href="/configure/" class="fui-gear" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Configure"></a>
+    </div>
+    <div id="logout" class="bar-icon bar-icon-fixed">
+        <a href="/logout/" class="fui-exit" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Logout"></a>
+    </div>
+    <div id="stretch">
+        <div id="back" class="bar-icon bar-icon-fixed">
+            {% if user.has_archive %}
+                <a href="/past/" class="fui-arrow-left" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Older"></a>
+            {% endif %}
+        </div>
+        <div id="today" class="bar-icon bar-icon-fixed">
+            {% if post.length > 750 %}
+                <a id="current" class="fui-checkbox-checked" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Today"></a>
+            {% else %}
+                <a id="current" class="fui-new" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="Today"></a>
+            {% endif %}
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+
+{% endblock %}
+
+{% block content %}
+        <div id="past_status">
+    {% for completed, length, url_string in past_status %}
+        {% if length > 0 %}
+            {% if completed %}
+                <a href="/{{ url_string }}/" class="fui-checkbox-checked" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ url_string }}"></a>
+            {% else %}
+                <a href="/{{ url_string }}/" class="fui-checkbox-unchecked incomplete" rel="tooltip" data-toggle="tooltip" data-placement="bottom" title="{{ url_string }}"></a>
+            {% endif %}
+        {% else %}
+            <span class="fui-checkbox-unchecked dne"></span>
+        {% endif %}
+    {% endfor %}
+    </div>
+    <div id="container">
+        <form name="myform" id="myform">
+            <input type="hidden" name="date_string" id="date_string" value="{{ post.date_string }}"/>
+            <textarea name="content" id="content" cols=40 autofocus placeholder="What happened today?">{{ post.content }}</textarea>
+        </form>
+    </div>
+{% endblock %}

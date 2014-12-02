@@ -1,0 +1,113 @@
+body, html {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: block;
+}
+
+.content, .content > form {
+    height:100%;
+}
+
+.logo {
+    padding-top: 5%;
+    width: 100%;
+}
+
+.col-md-2 > img {
+    max-width: 200px;
+}
+
+.gray {
+    background-color: #eee;
+}
+
+.footer {
+}
+
+.footer hr {
+    border-top: 1px solid #bac1c8;
+}
+
+.footer img {
+    height: 1.2em;
+}
+
+.invite {
+  color: #fff;
+  background-color: #16A085;
+}
+
+.container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+/* Login */
+
+h5 {
+    font-size:18px;
+    font-weight: normal;
+}
+
+div.login-header {
+    padding-bottom:20px;
+}
+
+.login-header > h3 {
+    margin:10px;
+    font-size:36px;
+    display:block;
+}
+
+.login-header > h5 {
+}
+
+.login-icon {
+    padding-right:10px;
+}
+
+.login-link {
+    color: rgb(52, 73, 94);
+}
+
+.login-form {
+    max-width: 400px;
+    min-width: 360px;
+    margin: 0 auto;
+}
+
+.login-screen {
+    padding: 0px;
+    padding-top: 13%;
+}
+
+/* Flash */
+
+.admin_flashes {
+  z-index: 1001;
+  position:fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  font-size: 110px;
+  font-weight: normal;
+  padding: 5%;
+  background-color: #20E5BE;
+  color: #edeff1;
+}
+
+/* Placeholder stylings */
+::-webkit-input-placeholder { /* WebKit browsers */
+    font-style: italic;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    font-style: italic;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    font-style: italic;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    font-style: italic;
+}

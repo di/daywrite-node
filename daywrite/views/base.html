@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    {% block head %}
+
+    <title>751: Better writing, every day.</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.0/jquery-ui.min.js"></script>
+
+    <link rel='stylesheet' href="/static/css/vendor/bootstrap.min.css" type='text/css' media='all' />
+    <link rel='stylesheet' href="/static/css/flat-ui.css" type='text/css' media='all' />
+    <link rel='stylesheet' href="/static/style.css" type='text/css' media='all' />
+
+    <script src="/static/js/flash.js"></script>
+
+    {% endblock %}
+
+  </head>
+
+  <body>
+    <div class="content">
+      {% block content %}{% endblock %}
+    </div>
+
+    {% block js_footer %}{% endblock %}
+
+  </body>
+</html>
