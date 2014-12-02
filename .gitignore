@@ -28,3 +28,6 @@ node_modules
 
 # OSX
 .DS_Store
+
+# Heroku
+.env
