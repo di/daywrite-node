@@ -1,3 +1,4 @@
+var fs = require('fs');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -5,11 +6,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
+var mongoose = require('mongoose');
 
 var debug = require('debug')('daywrite');
 
 var app = express();
 app.set('port', process.env.PORT || 3000);
+
+// Connect to mongodb
+var connect = function () {
+  var options = { server: { socketOptions: { keepAlive: 1 } } };
+  var db_url = process.env.MONGODB_URL;
+  debug('Connecting to MongoDB server at ' + db_url);
+  mongoose.connect(db_url, options);
+};
+connect();
+
+mongoose.connection.on('error', debug);
+mongoose.connection.on('disconnected', connect);
+
+// Bootstrap models
+fs.readdirSync(__dirname + '/app/models').forEach(function (file) {
+  if (file.split('.').pop() === "js") require(__dirname + '/app/models/' + file);
+});
 
 app.set('views', path.join(__dirname, 'app/views'));
 
